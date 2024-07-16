@@ -21,8 +21,6 @@ Ostream & operator<<(Ostream &os, direction const val) noexcept;
 std::ostream & operator<<(std::ostream &os, direction const val) noexcept;
 
 
-
-
 } // namespace Tahion
  
 #include "pTraits.H"

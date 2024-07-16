@@ -1,6 +1,7 @@
 #include "char.H"
 #include "IOstreams.H"
 
+
 char const * const Tahion::pTraits<char>::typeName = "char";
 
 Tahion::pTraits<char>::pTraits(Istream &is) noexcept

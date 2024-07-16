@@ -1,4 +1,5 @@
-#include "int8.H"
+#include "int16.H"
+#include "int32.H"
 #include "IOstreams.H"
 
 Tahion::Istream & operator>>(Istream &is, std::int16_t &i16) noexcept
