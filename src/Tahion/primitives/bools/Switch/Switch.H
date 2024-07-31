@@ -89,8 +89,76 @@ public:
     explicit Switch(double const dl, double const tol = 0.5 ) noexcept;
 
     explicit Switch(token const &tk) noexcept;
+    explicit Switch(Istream     &is) noexcept;
+
+    Switch
+    (
+        word       const &key,
+        dictionary const &dict
+    ) noexcept;
+    
+    Switch
+    (
+        word       const &key,
+        dictionary const &dict,
+        Switch     const deflt,
+        bool       const warnOnly
+    ) noexcept;
 
 
+    static Switch getOrDefault
+    (
+        word       const &key,
+        dictionary const &dict,
+        Switch     const deflt = switchType::FALSE
+    ) noexcept;
+
+    static Switch getOrAddToDict
+    (
+        word       const &key,
+        dictionary       &dict,
+        Switch     const deflt = switchType::FALSE
+    ) noexcept;
+
+
+    static char const * const name(bool const b) noexcept;
+    static bool contains(std::string const &str) noexcept;
+    static Switch   find(std::string const &str) noexcept;
+    static bool    found(std::string const &str) noexcept { return contains(str); }
+
+    bool good() const noexcept;
+    bool bad () const noexcept { return !good(); }
+
+    switchType type() const noexcept;
+
+    void negate() noexcept;
+
+    char const * const c_str() const noexcept;
+    std::string          str() const noexcept;
+
+    bool readIfPresent
+    (
+        word       const &key,
+        dictionary const &dict
+    ) noexcept;
+
+
+    operator bool() const noexcept
+    {
+        return (value_ & 0x1);
+    }
+
+    Switch & operator=(switchType const &sw) noexcept
+    {
+        value_ = sw;
+        return *this;
+    }
+
+    Switch & operator=(bool const b) noexcept
+    {
+        value_ = (b ? Switch::TRUE : Switch::FALSE);
+        return *this;
+    }
 };
 
 
